@@ -56,36 +56,38 @@ router.get('/flight', async(req, res) => {
 //@desc process add flight agent form
 //@route post /flight
 router.post('/flight', async(req, res) => {
-        try {
-            await Agent.create(req.body)
-            res.redirect('/flight')
-        } catch (err) {
-            console.error(err)
-            res.render('errors/500 ')
-
-        }
-    })
-    //single agent view.
-router.get('/information', async(req, res) => {
-    const agent = await Agent.findOne({
-            _id: req.params.id
-        })
-        .populate("_id")
-        .lean()
-    if (!agent) {
-        return res.render('errors/404')
-    } else {
-
-        res.render('full_agent_info', { layout: 'general', agent })
-
+    try {
+        await Agent.create(req.body)
+        res.redirect('/flight')
+    } catch (err) {
+        console.error(err)
+        res.render('errors/500 ')
 
     }
 })
 
-router.get('/contact', async(req, res) => {
-    const id = req.params.id
+//redirect tooo 
+router.get('/information', async(req, res) => {
+        const agent = await Agent.findOne({
+                _id: req.params.id
+            })
+            .populate("_id")
+            .lean()
+        if (!agent) {
+            return res.render('errors/404')
+        } else {
+
+            res.render('full_agent_info', { layout: 'general', agent })
+
+
+        }
+
+
+    })
+    //single agent view.
+router.get('/contact/:id', async(req, res) => {
     PAYMENT_URI = "https://flutterwave.com/pay/clearing"
-    res.redirect(PAYMENT_URI)
+    res.redirect(307, PAYMENT_URI)
 
 })
 
