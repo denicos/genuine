@@ -66,10 +66,7 @@ router.post('/flight', async(req, res) => {
         }
     })
     //single agent view.
-
-router.get('/contact/:id', async(req, res) => {
-    PAYMENT_URI = "https://flutterwave.com/pay/clearing"
-    res.redirect(PAYMENT_URI)
+router.get('/information', async(req, res) => {
     const agent = await Agent.findOne({
             _id: req.params.id
         })
@@ -83,6 +80,13 @@ router.get('/contact/:id', async(req, res) => {
 
 
     }
+})
+
+router.get('/contact', async(req, res) => {
+    const id = req.params.id
+    PAYMENT_URI = "https://flutterwave.com/pay/clearing/"
+    res.redirect(PAYMENT_URI)
+
 })
 
 
