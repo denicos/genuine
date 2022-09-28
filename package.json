@@ -1,0 +1,45 @@
+{
+    "name": "genuine",
+    "version": "1.0.0",
+    "description": "search and find directory",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js"
+    },
+    "keywords": [
+        "exports",
+        "exporters",
+        "importers",
+        "imports",
+        "flight",
+        "agents",
+        "inspector",
+        "products",
+        "farmers"
+    ],
+    "author": "Lord Muno",
+    "license": "MIT",
+    "dependencies": {
+        "bcryptjs": "*",
+        "body-parser": "*",
+        "connect-flash": "*",
+        "cookie-parser": "^1.4.1",
+        "dotenv": "^16.0.2",
+        "express": "*",
+        "express-handlebars": "*",
+        "express-messages": "*",
+        "express-session": "*",
+        "express-validator": "^5.3.0",
+        "flutterwave-node-v3": "^1.0.11",
+        "moment": "^2.29.4",
+        "mongodb": "*",
+        "mongoose": "*",
+        "passport": "*",
+        "passport-http": "*",
+        "passport-local": "*"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.19"
+    }
+}
