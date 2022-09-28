@@ -84,7 +84,7 @@ router.get('/information', async(req, res) => {
 
 router.get('/contact', async(req, res) => {
     const id = req.params.id
-    PAYMENT_URI = "https://flutterwave.com/pay/clearing/"
+    PAYMENT_URI = "https://flutterwave.com/pay/clearing"
     res.redirect(PAYMENT_URI)
 
 })
