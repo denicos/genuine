@@ -8,10 +8,13 @@ router.get('/', function(req, res) {
     res.render('index');
 });
 
-//Get clearing agent view
-router.get('/clearing', async(req, res) => {
+router.get('/payment', async(req, res) => {
     const payment_uri = "https://flutterwave.com/pay/clearing"
     res.redirect(payment_uri);
+})
+
+//Get clearing agent view
+router.get('/clearing', async(req, res) => {
     try {
         const agents = await Agent.find({ agent_type: 'clearing' })
             .populate("agent_type")
