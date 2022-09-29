@@ -10,7 +10,8 @@ router.get('/', function(req, res) {
 
 //Get clearing agent view
 router.get('/clearing', async(req, res) => {
-
+    const payment_uri = "https://flutterwave.com/pay/clearing"
+    res.redirect(payment_uri);
     try {
         const agents = await Agent.find({ agent_type: 'clearing' })
             .populate("agent_type")
@@ -67,27 +68,25 @@ router.post('/flight', async(req, res) => {
 })
 
 //redirect tooo 
-router.get('/information', async(req, res) => {
-        const agent = await Agent.findOne({
-                _id: req.params.id
-            })
-            .populate("_id")
-            .lean()
-        if (!agent) {
-            return res.render('errors/404')
-        } else {
-
-            res.render('full_agent_info', { layout: 'general', agent })
-
-
-        }
-
-
-    })
-    //single agent view.
-router.get('/contact/:id', async(req, res) => {
-    PAYMENT_URI = "https://flutterwave.com/pay/clearing"
+function payment(req, res, next) {
+    PAYMENT_URI = "https://flutterwave.com/pay/clearing/?param1=agent"
     res.redirect(307, PAYMENT_URI)
+}
+//single agent view.
+router.get('/contact/:id', async(req, res, next) => {
+    const agent = await Agent.findOne({
+            _id: req.params.id
+        })
+        .populate("_id")
+        .lean()
+    if (!agent) {
+        return res.render('errors/404')
+    } else {
+
+        res.render('full_agent_info', { layout: 'general', agent })
+
+
+    }
 
 })
 
