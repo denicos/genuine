@@ -1,22 +1,15 @@
 const mongoose = require('mongoose');
-const AgentSchema = mongoose.Schema({
-    name: {
-        type: String,
-        index: true
-    },
-    company: {
-        type: String,
-        index: true
-    },
-    contact: {
-        type: String,
 
+const SpaceSchema = mongoose.Schema({
+    country: {
+        type: String,
     },
-    address: {
-        type: String
+    airline: {
+        type: String,
+        index: true
     },
-    agent_type: {
-        type: String
+    departure_date: {
+        type: String,
     },
     status: {
         type: String,
@@ -29,4 +22,4 @@ const AgentSchema = mongoose.Schema({
     }
 });
 
-const Agent = module.exports = mongoose.model('Agent', AgentSchema);
+const Space = module.exports = mongoose.model('Space', SpaceSchema);

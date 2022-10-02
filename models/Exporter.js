@@ -1,22 +1,15 @@
 const mongoose = require('mongoose');
-const AgentSchema = mongoose.Schema({
-    name: {
-        type: String,
-        index: true
-    },
-    company: {
+
+const ExporterSchema = mongoose.Schema({
+    company_name: {
         type: String,
         index: true
     },
     contact: {
         type: String,
-
     },
     address: {
-        type: String
-    },
-    agent_type: {
-        type: String
+        type: String,
     },
     status: {
         type: String,
@@ -29,4 +22,4 @@ const AgentSchema = mongoose.Schema({
     }
 });
 
-const Agent = module.exports = mongoose.model('Agent', AgentSchema);
+const Exporter = module.exports = mongoose.model('Exporter', ExporterSchema);
