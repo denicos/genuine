@@ -47,11 +47,10 @@ router.get('/clearings', async(req, res) => {
 router.post('/clearing', async(req, res) => {
     try {
         await Agent.create(req.body)
-        res.redirect('/clearing')
+        res.redirect('/clearings')
     } catch (err) {
         console.error(err)
         res.render('errors/500 ')
-
     }
 })
 
@@ -66,6 +65,21 @@ router.get('/flight', async(req, res) => {
             .sort({ createdAt: 'desc' })
             .lean()
         res.render('flight_agent', { layout: 'general', agents })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+//Get clearing agent view
+router.get('/flights', async(req, res) => {
+
+    try {
+        const agents = await Agent.find({ agent_type: 'flight' })
+            .populate("agent_type")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('pay_flight', { layout: 'general', agents })
     } catch (err) {
         console.error(err)
         res.render('/errors/500')
@@ -116,11 +130,24 @@ router.get('/less', async(req, res) => {
         res.render('/errors/500')
     }
 });
+
+router.get('/lezz', async(req, res) => {
+    try {
+        const products = await Product.find({ quantity_type: 'less' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('pay_less', { layout: 'general', products })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
 //@route post /less
 router.post('/less', async(req, res) => {
         try {
             await Product.create(req.body)
-            res.redirect('/less')
+            res.redirect('/lezz')
         } catch (err) {
             console.error(err)
             res.render('errors/500 ')
@@ -155,11 +182,27 @@ router.get('/excess', async(req, res) => {
         res.render('/errors/500')
     }
 });
+
+//DUMMY EXCESS
+//quantity excess by
+router.get('/excezz', async(req, res) => {
+    try {
+        const productz = await Product.find({ quantity_type: 'excess' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('pay_excess', { layout: 'general', productz })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
 //@route post /excess
 router.post('/excess', async(req, res) => {
         try {
             await Product.create(req.body)
-            res.redirect('/excess')
+            res.redirect('/excezz')
         } catch (err) {
             console.error(err)
             res.render('errors/500 ')

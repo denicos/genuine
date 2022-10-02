@@ -1,20 +1,22 @@
-<h1>exporters with excess quantity</h1>
+<h1 class="text-center h3 py-2 fw-bolder">exporters with excess quantity</h1>
  
 <div class="table-responsive py-3">
-    <table class="table table-primary">
-        <thead>
+    <table class="table">
+        <thead class="table-secondary text-center">
             <tr>
                 <th scope="col">Product Name</th>
                 <th scope="col">Quantity</th>
+                <th scope="col">Contact</th>
             </tr>
         </thead>
 
         {{#each productz}}
         <tbody>
-            <tr class="">
+            <tr class="text-center">
                 <td scope="row">{{name}}</td>
+                <td scope="row">{{quantity}}</td>
                 <td>
-                    <a href="/excess/{{_id}}">VIEW KILOGRAMMES</a>
+                    <a  class="btn btn-info text-white"  href="/excess/{{_id}}">VIEW CONTACT</a>
                 </td>
             </tr>
             
@@ -51,6 +53,13 @@
                   <div class="col-md-12">
                     <label for="validationCustom03" class="form-label">EXCESS BY</label>
                     <input type="text" class="form-control" id="validationCustom03"  name="quantity" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid company name
+                    </div>
+                  </div>
+                   <div class="col-md-12">
+                    <label for="validationCustom03" class="form-label">CONTACT</label>
+                    <input type="text" class="form-control" id="validationCustom03"  name="contact" required>
                     <div class="invalid-feedback">
                       Please provide a valid company name
                     </div>

@@ -1,22 +1,22 @@
-<h1>exporters with less quantity</h1>
+<h1 class="text-center h3 py-2 fw-bolder">exporters with less quantity</h1>
  
 <div class="table-responsive py-3">
-    <table class="table table-primary">
-        <thead>
+    <table class="table">
+        <thead class="table-secondary text-center">
             <tr>
-                <th scope="col">Product Name</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Contact</th>
+                <th scope="col" class="h3">Product Name</th>
+                <th scope="col" class="h3">Quantity</th>
+                <th scope="col" class="h3">Contact</th>
             </tr>
         </thead>
 
         {{#each products}}
         <tbody>
-            <tr class="">
+            <tr class="text-center">
                 <td scope="row">{{name}}</td>
                 <td scope="row">{{quantity}}</td>
                 <td>
-                    <a href="/less/{{_id}}">VIEW CONTACT</a>
+                      <a  class="btn btn-info text-white" href="/less/{{_id}}"> VIEW CONTACT</a>
                 </td>
             </tr>
             
@@ -27,9 +27,15 @@
 
 
 <!-- Modal trigger button -->
+<div class="float-md-right"> 
+<!-- Modal trigger button -->
 <button type="button" class="btn btn-primary btn-md py-3" data-bs-toggle="modal" data-bs-target="#modalId">
   ADD INFORMATION
 </button>
+<a href="/lezz" type="button" class="btn btn-primary btn-md py-2">
+  BACK
+</a>
+</div>
 
 <!-- Modal Body -->
 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
