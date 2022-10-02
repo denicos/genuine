@@ -1,0 +1,26 @@
+<h1 class="text-center h3 py-2 fw-bolder">CLEARING AGENTS</h1>
+<div class="table-responsive py-1">
+    <table class="table">
+        <thead class="table-secondary text-center">
+            <tr>
+                <th scope="col" class="h3 ">NAME</th>
+                <th scope="col" class="h3">COMPANY</th>
+                <th scope="col" class="h3">CONTACT</th>
+            </tr>
+        </thead>
+
+        {{#each agents}}
+        <tbody>
+            <tr class="text-center">
+                <td scope="row">{{name}}</td>
+                <td>{{company}}</td>
+                <td>
+                    <a class="btn btn-info text-white" href="/payment">PAY TO VIEW CONTACT</a>
+                    
+                </td>
+            </tr>
+            
+        </tbody>
+        {{/each}}
+    </table>
+</div>

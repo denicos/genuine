@@ -12,6 +12,7 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Flutterwave = require('flutterwave-node-v3');
+const paginateHelper = require('express-handlebars-paginate');
 
 
 //load config
@@ -33,6 +34,7 @@ db.on('error', function(err) {
 
 
 
+
 var routes = require('./routes/index');
 
 // Init App
@@ -43,9 +45,17 @@ var app = express();
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs.engine({ defaultLayout: 'normal' }));
+app.engine('handlebars', exphbs.engine({
+    helpers: {
+        paginateHelper
+    },
+    defaultLayout: 'normal'
+}));
 app.set('view engine', 'handlebars');
 
+
+//register helper
+//handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
 
 
 //BodyParser MiddleWare
