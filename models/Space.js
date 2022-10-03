@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const SpaceSchema = mongoose.Schema({
-    country: {
+    destination: {
         type: String,
     },
     airline: {
@@ -10,6 +10,12 @@ const SpaceSchema = mongoose.Schema({
     },
     departure_date: {
         type: String,
+    },
+    contact: {
+        type: String
+    },
+    weight: {
+        type: String
     },
     status: {
         type: String,

@@ -6,17 +6,21 @@
             <tr>
                 <th scope="col" class="h3">COUNTRY</th>
                 <th scope="col" class="h3">AIRLINE</th>
-                <th scope="col" class="h3">DEPARTURE DATE</th>
+                <th scope="col" class="h3"> DATE</th>
+                <th scope="col" class="h3">WEIGHT </th>
+                <th scope="col" class="h3">CONTACT</th>
             </tr>
         </thead>
 
         {{#each spaces}}
         <tbody>
             <tr class="text-center">
-                <td scope="row">{{country}}</td>
+                <td scope="row">{{destination}}</td>
                 <td scope="row">{{airline}}</td>
+                <td scope="row">{{departure_date}}</td>
+                <td scope="row">{{weight}}</td>
                 <td>
-                    <a class="btn btn-info text-white" href="/space/{{_id}}">VIEW DEPARTURE DATE</a>
+                    <a class="btn btn-info text-white" href="/space/{{_id}}">VIEW CONTACT</a>
                 </td>
             </tr>
             
@@ -48,8 +52,8 @@
                 <form class="row g-3 needs-validation" novalidate method="POST" action="/space">
                     
                   <div class="col-md-12">
-                    <label for="validationCustom01" class="form-label">Country</label>
-                    <input type="text" class="form-control" id="validationCustom01" name="country" required>
+                    <label for="validationCustom01" class="form-label">Destination</label>
+                    <input type="text" class="form-control" id="validationCustom01" name="destination" required>
                     <div class="valid-feedback">
                       Looks good!
                     </div>
@@ -64,6 +68,20 @@
                     <div class="col-md-12">
                     <label for="validationCustom03" class="form-label">Departure Date</label>
                     <input type="date" class="form-control" id="validationCustom03"  name="departure_date" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid company name
+                    </div>
+                  </div>
+                   <div class="col-md-12">
+                    <label for="validationCustom03" class="form-label">Weight</label>
+                    <input type="text" class="form-control" id="validationCustom03"  name="weight" required>
+                    <div class="invalid-feedback">
+                      Please provide a valid company name
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="validationCustom03" class="form-label">Contact</label>
+                    <input type="text" class="form-control" id="validationCustom03"  name="contact" required>
                     <div class="invalid-feedback">
                       Please provide a valid company name
                     </div>

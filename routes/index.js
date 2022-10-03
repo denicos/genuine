@@ -17,6 +17,11 @@ router.get('/payment', async(req, res) => {
     res.redirect(payment_uri);
 })
 
+router.get('/flight_payment', async(req, res) => {
+    const payment = "https://flutterwave.com/pay/flight-agent"
+    res.redirect(payment);
+})
+
 //Get clearing agent view
 router.get('/clearing', async(req, res) => {
     try {
@@ -288,7 +293,7 @@ router.get('/inspector/:id', async(req, res) => {
 router.get('/space', async(req, res) => {
     try {
         const spaces = await Space.find({ status: 'unapproved' })
-            .populate("country")
+            .populate("destination")
             .sort({ createdAt: 'desc' })
             .lean()
         res.render('space', { layout: 'general', spaces })
@@ -302,7 +307,7 @@ router.get('/space', async(req, res) => {
 router.get('/spaces', async(req, res) => {
     try {
         const spaces = await Space.find({ status: 'unapproved' })
-            .populate("country")
+            .populate("destination")
             .sort({ createdAt: 'desc' })
             .lean()
         res.render('pay_space', { layout: 'general', spaces })
