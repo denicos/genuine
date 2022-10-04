@@ -5,6 +5,7 @@ const Product = require('../models/Product');
 const Inspector = require('../models/Inspector')
 const Space = require('../models/Space');
 const Exporter = require('../models/Exporter');
+const Farmer = require('../models/Farmer');
 
 
 //Get Homepag
@@ -394,6 +395,65 @@ router.get('/exporter/:id', async(req, res) => {
         return res.render('errors/404')
     } else {
         res.render('view_exporter', { layout: 'general', exporter })
+    }
+})
+
+
+
+
+
+
+//get farmers' page..
+router.get('/farmer', async(req, res) => {
+    try {
+        const farmers = await Farmer.find({ status: 'unapproved' })
+            .populate("status")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('farmer', { layout: 'general', farmers })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+//dummy
+router.get('/farmers', async(req, res) => {
+    try {
+        const farmers = await Farmer.find({ status: 'unapproved' })
+            .populate("status")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('pay_farmer', { layout: 'general', farmers })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+//@route post /farmer
+router.post('/farmer', async(req, res) => {
+        try {
+            await Farmer.create(req.body)
+            res.redirect('/farmers')
+        } catch (err) {
+            console.error(err)
+            res.render('errors/500 ')
+
+        }
+    })
+    //single farmer
+router.get('/farmer/:id', async(req, res) => {
+    const farmer = await Farmer.findOne({
+            _id: req.params.id
+        })
+        .populate("_id")
+        .lean()
+
+    if (!farmer) {
+        return res.render('errors/404')
+    } else {
+        res.render('view_farmers', { layout: 'general', farmer })
     }
 })
 

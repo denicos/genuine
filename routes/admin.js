@@ -29,10 +29,13 @@ router.get('/clear', async(req, res) => {
 //single approve view.
 //@desc update agent
 //@route PUT 
-router.get('approve/:id', async(req, res) => {
-    let agent = await Agent.findById(req.params.id).lean()
-
-    console.log(agent)
+router.post('/approve/:id', async(req, res) => {
+    const filter = { _id: req.params.id };
+    const update = { status: "approved" };
+    let agent = await Agent.findOneAndUpdate(filter, update, {
+        new: true
+    })
+    console.log(agent.status)
 })
 
 
@@ -41,14 +44,6 @@ router.get('/auth', function(req, res) {
     res.render('admin/auth', { layout: 'admin' });
 });
 
-//Request the server to authenticate user to login, and respond with dashboard
-router.post('/', passport.authenticate('local', { failureRedirect: '/login' }),
-    (req, res) => {
-        req.session.user = req.user
-            //go when loggedin
-        res.redirect('/procurement')
-    }
-)
 router.post('/auth', passport.authenticate('local', { failureRedirect: '/auth' }), async(req, res) => {
     req.session.user = req.user
     res.redirect('/index')

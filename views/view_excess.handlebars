@@ -1,7 +1,38 @@
 
-<div class="container">
+<div class="card text-center">
+  <div class="card-body">
 
-<h1>{{excess.name}}</h1>
-<h1>{{excess.quantity}}</h1>
-<h1>{{excess.contact}}</h1>
+    <table class="table">
+  <thead >
+  </thead>
+  <tbody class="text-center">
+    <tr>
+        <th class="bg-light text-center">NAME</th>
+        <td>
+            <p class="fw-normal mb-1">{{excess.name}}</p>
+      </td>
+        </tr>
+        <tr>
+            <th class="bg-light text-center">QUANTITY</th>
+            
+      <td>
+        <p class="fw-normal mb-1"> {{excess.quantity}}</p>
+      </td>
+        </tr>
+        
+      <tr>
+        <th class="bg-light text-center">CONTACT</th>
+      <td>
+        <p class="fw-normal mb-1"> {{excess.contact}}</p>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+    
+  </div>
+  </div>
+
+<div class="py-2">
+<a class="btn btn-info text-white" href="/excezz">Back</a>
 </div>

@@ -1,10 +1,48 @@
 
+<div class="card text-center">
+  <div class="card-body">
 
-<div class="card" style="width: 18rem;">
-  <ul class="list-group list-group-light">
-    <li class="list-group-item px-3">{{spaces.country}}</li>
-    <li class="list-group-item px-3">{{spaces.airline}}</li>
-    <li class="list-group-item px-3">{{spaces.departure_date}}</li>
-  </ul>
+    <table class="table">
+
+  <tbody class="text-center">
+    <tr>
+      <th class="bg-light text-center">DESTINATION</th>
+      <td>
+            <p class="fw-bold mb-1">{{spaces.destination}}</p>
+      </td></tr>
+  <tr>
+      <th class="bg-light text-center">AIRLINE</th>
+      <td>
+        <p class="fw-normal mb-1">{{spaces.airline}} </p>
+      </td>
+      </tr>
+
+<tr>
+      <th class="bg-light text-center">DEPARTURE DATE</th>
+      <td>
+        <p class="fw-normal mb-1">{{spaces.departure_date}}</p>
+      </td>
+      </tr>
+
+<tr>
+<th class="bg-light text-center">WEIGHT</th>
+      <td>
+        <p class="fw-normal mb-1">{{spaces.weight}}</p>
+      </td>
+</tr>
+<tr>
+  <th class="bg-light text-center">CONTACT</th>
+      <td>
+        <p class="fw-normal mb-1">{{spaces.contact}}</p>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+    
+  </div>
 </div>
-<a href="/space">Back</a>
+<div class="py-2">
+<a class="btn btn-info text-white" href="/spaces">Back</a>
+</div>
+

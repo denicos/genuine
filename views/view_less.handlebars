@@ -1,7 +1,36 @@
+<div class="card text-center">
+  <div class="card-body">
 
-<div class="container ">
-{{les.name}}
-    {{les.quantity}}
-   {{les.contact}}
-
+    <table class="table">
+  <thead >
+  </thead>
+  <tbody class="text-center">
+    <tr>
+        <th class="bg-light text-center">NAME</th>
+        <td>
+            <p class="fw-normal mb-1">{{les.name}}</p>
+      </td>
+        </tr>
+        <tr>
+            <th class="bg-light text-center">QUANTITY</th>
+            
+      <td>
+        <p class="fw-normal mb-1"> {{les.quantity}}</p>
+      </td>
+        </tr>
+        
+      <tr>
+        <th class="bg-light text-center">CONTACT</th>
+      <td>
+        <p class="fw-normal mb-1"> {{les.contact}}</p>
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+    
+  </div>
+</div>
+<div class="py-2">
+<a class="btn btn-info text-white" href="/lezz">Back</a>
 </div>
