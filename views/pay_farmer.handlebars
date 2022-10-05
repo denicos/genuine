@@ -1,15 +1,14 @@
 <h1 class="text-center h3 py-2 fw-bolder">FARMERS</h1>
 <div class="py-2">
-    <select class="form-select" aria-label="Default select example" name="product">
+    <select class="form-select" aria-label="Default select example" name="selected_product">
         <option selected>SELECT PRODUCT</option>
-            {{#each farmers}}
-            <option value="{{product}}">{{product}}</option>
+            {{#each product}}
+            <option value="{{name}}">{{name}}</option>
             {{/each}}
     </select>
 </div>
-{{#if }}
- 
-{{/if}}
+
+
 <div class="table-responsive py-1">
     <table class="table">
         <thead class="table-secondary text-center">
@@ -21,10 +20,12 @@
         </thead>
 
         {{#each farmers}}
+        {{#if selected_product}}
         <tbody>
             <tr class="text-center">
                 <td scope="row">{{name}}</td>
                 <td>{{price}}</td>
+                <td>{{product}}</td>
                 <td>
                     <a class="btn btn-info text-white" href="/payment">PAY TO VIEW CONTACT</a>
                     
@@ -32,6 +33,7 @@
             </tr>
             
         </tbody>
+        {{/if}}
         {{/each}}
     </table>
 </div>

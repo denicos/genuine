@@ -6,6 +6,7 @@ const Inspector = require('../models/Inspector')
 const Space = require('../models/Space');
 const Exporter = require('../models/Exporter');
 const Farmer = require('../models/Farmer');
+const Category = require('../models/Category');
 
 
 //Get Homepag
@@ -420,11 +421,12 @@ router.get('/farmer', async(req, res) => {
 //dummy
 router.get('/farmers', async(req, res) => {
     try {
+        const product = await Category.find({ status: 'unapproved' }).populate('name').lean();
         const farmers = await Farmer.find({ status: 'unapproved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
-        res.render('pay_farmer', { layout: 'general', farmers })
+        res.render('pay_farmer', { layout: 'general', product, farmers })
     } catch (err) {
         console.error(err)
         res.render('/errors/500')
