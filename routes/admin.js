@@ -15,7 +15,7 @@ router.get('/index', ensureAuth, function(req, res) {
     res.render('admin/admin_index', { layout: 'blank' });
 });
 
-router.get('/clear', ensureAuth, ensureGuest, async(req, res) => {
+router.get('/clear', ensureAuth, async(req, res) => {
     try {
         const agents = await Agent.find({ status: 'unapproved', agent_type: 'clearing' })
             .populate("agent_type")
@@ -28,7 +28,7 @@ router.get('/clear', ensureAuth, ensureGuest, async(req, res) => {
     }
 });
 
-router.get('/cleared', ensureAuth, ensureGuest, async(req, res) => {
+router.get('/cleared', ensureAuth, async(req, res) => {
     try {
         const agents = await Agent.find({ status: 'approved', agent_type: 'clearing' })
             .populate("agent_type")
