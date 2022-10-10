@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const AgentSchema = mongoose.Schema({
     name: {
         type: String,
-        index: true
+
     },
     company: {
         type: String,
-        index: true
+
     },
     contact: {
         type: String,
@@ -25,8 +25,8 @@ const AgentSchema = mongoose.Schema({
     },
     CreatedAt: {
         type: Date,
+        expires: '720m',
         default: Date.now
     }
 });
-
 const Agent = module.exports = mongoose.model('Agent', AgentSchema);

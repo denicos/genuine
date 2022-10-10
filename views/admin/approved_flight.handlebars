@@ -1,4 +1,4 @@
-<h1 class="text-center h3 py-2 fw-bolder">UNAPPROVED CLEARING AGENTS</h1>
+<h1 class="text-center h3 py-2 fw-bolder">APPROVED FLIGHT AGENTS</h1>
 <div class="table-responsive py-1">
     <table class="table">
         <thead class="table-secondary text-center">
@@ -6,6 +6,7 @@
                 <th scope="col" class="h3 ">NAME</th>
                 <th scope="col" class="h3">COMPANY</th>
                 <th scope="col" class="h3">CONTACT</th>
+                <th scope="col" class="h3">DATE</th>
                 <th scope="col" class="h3">STATUS</th>
             </tr>
         </thead>
@@ -16,8 +17,10 @@
                 <td scope="row">{{name}}</td>
                 <td>{{company}}</td>
                 <td>{{contact}}</td>
+                <td>{{CreatedAt}}</td>
                 <td>
-                    <a  class="btn btn-primary btn-md py-2 align-right"   href="/admin/approve_cleared/{{_id}}">APPROVE</a>
+                    <a class="btn btn-info text-white" href="/delete/{{_id}}">DELETE</a>
+                    
                 </td>
             </tr>
             

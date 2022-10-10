@@ -1,112 +1,55 @@
-<h1 class="text-center h3 py-2 fw-bolder">FARMERS</h1>
-<div class="py-2">
-    <select class="form-select" aria-label="Default select example" name="selected_product">
-        <option selected>SELECT PRODUCT</option>
-            {{#each product}}
-            <option value="{{name}}">{{name}}</option>
-            {{/each}}
-    </select>
-</div>
+<div class="container">
+  <div class="row py-2">
+    <div class="col">
+       <div class="card">
+      <div class="card-body text-center">
+       <a class="btn btn-outline-primary  btn-block" href="/product/avocados" role="button">AVOCADO</a>
+      </div>
+    </div>
+    </div>
+
+    <div class="col ">
+       <div class="card">
+      <div class="card-body text-center">
+       <a class="btn btn-outline-primary  btn-block" href="#" role="button">GINGER</a>
+      </div>
+    </div>
+    </div>
 
 
-<div class="table-responsive py-1">
-    <table class="table">
-        <thead class="table-secondary text-center">
-            <tr>
-                <th scope="col" class="h3 ">NAME</th>
-                <th scope="col" class="h3">PRICE PER KG</th>
-                <th scope="col" class="h3">CONTACT</th>
-            </tr>
-        </thead>
+    <div class="col py-2">
+       <div class="card">
+      <div class="card-body text-center">
+       <a class="btn btn-outline-primary  btn-block" href="#" role="button">BANANA</a>
+      </div>
+    </div>
+    </div>
+  </div>
 
-        {{#each farmers}}
-        {{#if selected_product}}
-        <tbody>
-            <tr class="text-center">
-                <td scope="row">{{name}}</td>
-                <td>{{price}}</td>
-                <td>{{product}}</td>
-                <td>
-                    <a class="btn btn-info text-white" href="/payment">PAY TO VIEW CONTACT</a>
-                    
-                </td>
-            </tr>
-            
-        </tbody>
-        {{/if}}
-        {{/each}}
-    </table>
-</div>
+  <div class="row py-2">
+    <div class="col">
+       <div class="card">
+      <div class="card-body text-center">
+       <a class="btn btn-outline-primary  btn-block" href="#" role="button">PINEAPPLE</a>
+      </div>
+    </div>
+    </div>
+
+    <div class="col">
+       <div class="card">
+      <div class="card-body text-center">
+       <a class="btn btn-outline-primary  btn-block" href="#" role="button">MANGOES</a>
+      </div>
+    </div>
+    </div>
+  </div>
 
 
-<!-- Modal trigger button -->
-<div class="float-md-right"> 
-	 <button type="button" class="btn btn-primary btn-md py-2 align-right" data-bs-toggle="modal" data-bs-target="#modalId">
-  ADD INFORMATION
-</button>
-<a href="/" type="button" class="btn btn-primary btn-md py-2">
-  BACK
-</a>
-</div>
-
-
-<!-- Modal Body -->
-<!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
-<div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">ADD FARMERS INFORMATION</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="row g-3 needs-validation" novalidate method="POST" action="/farmer">
-                  <div class="col-md-12">
-                    <label for="validationCustom01" class="form-label">NAME</label>
-                    <input type="text" class="form-control" id="validationCustom01" name="name" required>
-                    <div class="valid-feedback">
-                      Looks good!
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <label for="validationCustom03" class="form-label">PRICE PER KG</label>
-                    <input type="text" class="form-control" id="validationCustom03"  name="price" required>
-                    <div class="invalid-feedback">
-                      Please provide a valid company name
-                    </div>
-                  </div>
-                   <div class="col-md-12">
-                  <select class="form-select" aria-label="Default select example" name="product">
-                        <option selected>SELECT PRODUCT</option>
-                        <option value="avocado">AVOCADO</option>
-                        <option value="banana">BANANA</option>
-                        <option value="pineapple">PINEAPPLE</option>
-                        <option value="ginger">GINGER</option>
-                </select>
-                 </div>
-                  
-                  <div class="col-12">
-                    <div class="input-group">
-                        <span class="input-group-text">Phone and Address</span>
-                        <input type="text" aria-label=" phone" name="contact" class="form-control">
-                        <input type="text" aria-label="address" name="address" class="form-control">
-                   </div>
-                  </div>
-                  <div class="col-12">
-                    <button class="btn btn-primary" type="submit">Submit form</button>
-                  </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
+  <div class="col py-2">
+       <div class="card">
+      <div class="card-body text-center">
+       <a class="btn btn-outline-primary  btn-block" href="#" role="button">SWEET POTATO</a>
+      </div>
+    </div>
     </div>
 </div>
-
-
-<!-- Optional: Place to the bottom of scripts -->
-<script>
-    const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)
-
-</script>

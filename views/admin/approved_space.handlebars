@@ -1,0 +1,34 @@
+<h1 class="text-center h3 py-2 fw-bolder">confirmed space with AWB</h1>
+ 
+<div class="table-responsive py-3">
+    <table class="table">
+        <thead class="table-secondary text-center">
+            <tr>
+                <th scope="col" class="h3">COUNTRY</th>
+                <th scope="col" class="h3">AIRLINE</th>
+                <th scope="col" class="h3"> DEPARTURE</th>
+                <th scope="col" class="h3">WEIGHT </th>
+                <th scope="col" class="h3">CONTACT</th>
+                <th scope="col" class="h3"> DATE</th>
+                <th scope="col" class="h3">ACTION</th>
+            </tr>
+        </thead>
+
+        {{#each spaces}}
+        <tbody>
+            <tr class="text-center">
+                <td scope="row">{{destination}}</td>
+                <td scope="row">{{airline}}</td>
+                <td scope="row">{{departure_date}}</td>
+                <td scope="row">{{weight}}</td>
+                <td scope="row">{{contact}}</td>
+                <td scope="row">{{CreatedAt}}</td>
+                <td>
+                    <a class="btn btn-info text-white" href="/delete/{{_id}}">DELETE</a>
+                </td>
+            </tr>
+            
+        </tbody>
+        {{/each}}
+    </table>
+</div>

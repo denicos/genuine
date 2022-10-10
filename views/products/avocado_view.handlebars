@@ -1,22 +1,24 @@
-<h1 class="text-center h3 py-2 fw-bolder">FLIGHT AGENTS</h1>
- 
-<div class="table-responsive py-3">
+<h1 class="text-center h3 py-2 fw-bolder">FARMERS</h1>
+<div class="table-responsive py-1">
     <table class="table">
         <thead class="table-secondary text-center">
             <tr>
-                <th scope="col" class="h3 ">Name</th>
-                <th scope="col" class="h3 ">Company</th>
-                <th scope="col" class="h3 ">Contact</th>
+                <th scope="col" class="h3 ">NAME</th>
+                <th scope="col" class="h3">PRICE</th>
+                <th scope="col" class="h3">PRODUCT</th>
+                <th scope="col" class="h3">CONTACT</th>
             </tr>
         </thead>
 
-        {{#each agents}}
+        {{#each farmers}}
         <tbody>
             <tr class="text-center">
                 <td scope="row">{{name}}</td>
-                <td>{{company}}</td>
+                <td>{{price}}</td>
+                <td>{{product}}</td>
                 <td>
-                    <a  class="btn btn-info text-white" href="/flight_payment">PAY TO VIEW CONTACT</a>
+                    <a class="btn btn-info text-white" href="/farmer/{{_id}}">VIEW CONTACT</a>
+                    
                 </td>
             </tr>
             
@@ -25,15 +27,17 @@
     </table>
 </div>
 
-<div class="float-md-right"> 
+
 <!-- Modal trigger button -->
-<button type="button" class="btn btn-primary btn-md py-3" data-bs-toggle="modal" data-bs-target="#modalId">
+<div class="float-md-right"> 
+	 <button type="button" class="btn btn-primary btn-md py-2 align-right" data-bs-toggle="modal" data-bs-target="#modalId">
   ADD INFORMATION
 </button>
-<a href="/" type="button" class="btn btn-primary btn-md py-2">
+<a href="/farmer" type="button" class="btn btn-primary btn-md py-2">
   BACK
 </a>
 </div>
+
 
 <!-- Modal Body -->
 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
@@ -41,12 +45,11 @@
     <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-md" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalTitleId">ADD FLIGHT AGENT</h5>
+                <h5 class="modal-title" id="modalTitleId">ADD FARMERS INFORMATION</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3 needs-validation" novalidate method="POST" action="/flight">
-                    <input type="text" hidden value="flight" name="agent_type"/>
+                <form class="row g-3 needs-validation" novalidate method="POST" action="/farmer">
                   <div class="col-md-12">
                     <label for="validationCustom01" class="form-label">NAME</label>
                     <input type="text" class="form-control" id="validationCustom01" name="name" required>
@@ -55,13 +58,21 @@
                     </div>
                   </div>
                   <div class="col-md-12">
-                    <label for="validationCustom03" class="form-label">COMPANY</label>
-                    <input type="text" class="form-control" id="validationCustom03"  name="company" required>
+                    <label for="validationCustom03" class="form-label">PRICE</label>
+                    <input type="text" class="form-control" id="validationCustom03"  name="price" required>
                     <div class="invalid-feedback">
                       Please provide a valid company name
                     </div>
                   </div>
-                 
+                   <div class="col-md-12">
+                  <select class="form-select" aria-label="Default select example" name="product">
+                        <option selected>SELECT PRODUCT</option>
+                        <option value="avocado">AVOCADO</option>
+                        <option value="banana">BANANA</option>
+                        <option value="pineapple">PINEAPPLE</option>
+                        <option value="ginger">GINGER</option>
+                </select>
+                 </div>
                   
                   <div class="col-12">
                     <div class="input-group">

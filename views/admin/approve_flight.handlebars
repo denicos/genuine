@@ -1,0 +1,19 @@
+<form class="row g-3 needs-validation" novalidate method="POST" action="/admin/approve_flight/{{agent._id}}">
+                     <input type="hidden" name="_method" value="PUT">
+                  
+                 <div class="col-12">
+            <div class="input-field col-12">
+                <select id="status" name="status">
+                    {{#select agent.status}}
+                    <option value="unapproved" selected>unapproved</option>
+                    <option value="approved">approved</option>
+                    {{/select}}
+                </select>
+                <label for="status">Status</label>
+            </div>
+        </div>
+                  
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                  </div>
+</form>

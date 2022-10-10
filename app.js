@@ -13,6 +13,7 @@ var mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Flutterwave = require('flutterwave-node-v3');
 const paginateHelper = require('express-handlebars-paginate');
+const methodOverride = require('method-override');
 
 
 //load config
@@ -40,13 +41,15 @@ var routes = require('./routes/index');
 // Init App
 var app = express();
 
-
+//handlebars helpers
+const { select } = require('./helpers/auth')
 
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs.engine({
     helpers: {
+        select,
         paginateHelper
     },
     defaultLayout: 'normal'
@@ -64,7 +67,18 @@ app.set('view engine', 'handlebars');
 //app.use(cookieParser);
 
 //Express bodyparser
+app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//put method override
+app.use(methodOverride(function(req, res) {
+    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+        // look in urlencoded POST bodies and delete it
+        let method = req.body._method
+        delete req.body._method
+        return method
+    }
+}))
 
 //Set Static Folder
 app.use(express.static(path.join(__dirname, 'public')));
@@ -116,6 +130,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/admin', require('./routes/admin'));
+app.use('/product', require('./routes/product'));
 
 //Set Port
 app.set('port', (process.env.PORT || 3000));

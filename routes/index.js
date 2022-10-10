@@ -27,11 +27,13 @@ router.get('/flight_payment', async(req, res) => {
 //Get clearing agent view
 router.get('/clearing', async(req, res) => {
     try {
-        const agents = await Agent.find({ agent_type: 'clearing' })
+        const agents = await Agent.find({ agent_type: 'clearing', status: 'approved' })
             .populate("agent_type")
             .sort({ createdAt: 'desc' })
             .lean()
         res.render('clearing_agents', { layout: 'general', agents })
+
+
     } catch (err) {
         console.error(err)
         res.render('/errors/500')
@@ -41,7 +43,7 @@ router.get('/clearing', async(req, res) => {
 //get clearing dummy
 router.get('/clearings', async(req, res) => {
     try {
-        const agents = await Agent.find({ agent_type: 'clearing' })
+        const agents = await Agent.find({ agent_type: 'clearing', status: 'approved' })
             .populate("agent_type")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -70,7 +72,7 @@ router.post('/clearing', async(req, res) => {
 router.get('/flight', async(req, res) => {
 
     try {
-        const agents = await Agent.find({ agent_type: 'flight' })
+        const agents = await Agent.find({ agent_type: 'flight', status: 'approved' })
             .populate("agent_type")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -85,7 +87,7 @@ router.get('/flight', async(req, res) => {
 router.get('/flights', async(req, res) => {
 
     try {
-        const agents = await Agent.find({ agent_type: 'flight' })
+        const agents = await Agent.find({ agent_type: 'flight', status: 'approved' })
             .populate("agent_type")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -119,10 +121,8 @@ router.get('/contact/:id', async(req, res, next) => {
     if (!agent) {
         return res.render('errors/404')
     } else {
-
+        console.log(req.path)
         res.render('full_agent_info', { layout: 'general', agent })
-
-
     }
 
 })
@@ -418,15 +418,16 @@ router.get('/farmer', async(req, res) => {
     }
 });
 
+
 //dummy
 router.get('/farmers', async(req, res) => {
     try {
-        const product = await Category.find({ status: 'unapproved' }).populate('name').lean();
+        const prod = req.body.selected_product
         const farmers = await Farmer.find({ status: 'unapproved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
-        res.render('pay_farmer', { layout: 'general', product, farmers })
+        res.render('pay_farmer', { layout: 'general', farmers })
     } catch (err) {
         console.error(err)
         res.render('/errors/500')
@@ -437,7 +438,7 @@ router.get('/farmers', async(req, res) => {
 router.post('/farmer', async(req, res) => {
         try {
             await Farmer.create(req.body)
-            res.redirect('/farmers')
+            res.redirect('/farmer')
         } catch (err) {
             console.error(err)
             res.render('errors/500 ')

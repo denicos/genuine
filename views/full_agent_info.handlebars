@@ -1,10 +1,40 @@
 
-<div class="container">
+<div class="card text-center">
+  <div class="card-body">
 
-<h1>{{agent.name}}</h1>
-<h1>{{agent.company}}</h1>
-<h1>{{agent.contact}}</h1>
-<h1>{{agent.address}}</h1>
+    <table class="table">
 
+  <tbody class="text-center">
+    <tr>
+      <th class="bg-light text-center">AGENT NAME</th>
+      <td>
+            <p class="fw-bold mb-1">{{agent.name}}</p>
+      </td></tr>
+  <tr>
+      <th class="bg-light text-center">AGENT COMPANY</th>
+      <td>
+        <p class="fw-normal mb-1">{{agent.company}}</p>
+      </td>
+      </tr>
+      <tr>
+      <th class="bg-light text-center">CONTACT</th>
+      <td>
+        <p class="fw-normal mb-1">{{agent.contact}}</p>
+      </td>
+      </tr>
+
+<tr>
+      <th class="bg-light text-center">ADDRESS</th>
+      <td>
+        <p class="fw-normal mb-1">{{agent.address}}</p>
+      </td>
+      </tr>
+    
+  </tbody>
+</table>
+    
+  </div>
 </div>
-<a href="/clearings">Back</a>
+<div class="py-2">
+<a class="btn btn-info text-white" href="/clearings">Back</a>
+</div>

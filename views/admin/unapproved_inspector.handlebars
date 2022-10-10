@@ -1,23 +1,24 @@
-<h1 class="text-center h3 py-2 fw-bolder">UNAPPROVED CLEARING AGENTS</h1>
-<div class="table-responsive py-1">
+<h1 class="text-center h3 py-2 fw-bolder">INSPECTORS</h1>
+ 
+<div class="table-responsive py-3">
     <table class="table">
         <thead class="table-secondary text-center">
             <tr>
-                <th scope="col" class="h3 ">NAME</th>
-                <th scope="col" class="h3">COMPANY</th>
+                <th scope="col" class="h3">INSPECTOR NAME</th>
                 <th scope="col" class="h3">CONTACT</th>
+                <th scope="col" class="h3">ADDRESS</th>
                 <th scope="col" class="h3">STATUS</th>
             </tr>
         </thead>
 
-        {{#each agents}}
+        {{#each inspectors}}
         <tbody>
             <tr class="text-center">
                 <td scope="row">{{name}}</td>
-                <td>{{company}}</td>
-                <td>{{contact}}</td>
+                <td scope="row">{{contact}}</td>
+                <td scope="row">{{address}}</td>
                 <td>
-                    <a  class="btn btn-primary btn-md py-2 align-right"   href="/admin/approve_cleared/{{_id}}">APPROVE</a>
+                    <a class="btn btn-info text-white" href="/approve/{{_id}}">APPROVE</a>
                 </td>
             </tr>
             
