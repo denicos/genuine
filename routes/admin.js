@@ -12,7 +12,7 @@ const Inspector = require('../models/Inspector')
 const Space = require('../models/Space')
 const Exporter = require('../models/Exporter')
 const Product = require('../models/Product')
-
+const Farmer = require('../models/Farmer')
 
 //get admin index
 router.get('/index', ensureAuth, function(req, res) {
@@ -473,6 +473,71 @@ router.put('/approve_exporter/:id', ensureAuth, async(req, res) => {
             runValidators: true
         })
         res.redirect('/admin/exporters')
+    }
+})
+
+
+// farmers un and approved
+router.get('/farmer', async(req, res) => {
+    try {
+        const farmer = await Farmer.find({ status: 'unapproved' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/unapproved_farmer', { layout: 'blank', farmer })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+
+router.get('/farmers', async(req, res) => {
+    try {
+        const farmer = await Farmer.find({ status: 'approved' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/approved_farmer', { layout: 'blank', farmer })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+router.get('/approve_farmer/:id', ensureAuth, async(req, res) => {
+    try {
+        const farmer = await Farmer.findOne({
+            _id: req.params.id
+        }).lean()
+        if (!farmer) {
+            res.render('/errors/404')
+        } else {
+            console.log(req.params.id)
+            res.render('admin/approve_farmer', { layout: 'blank', farmer })
+            console.log(farmer.status)
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+})
+
+router.put('/approve_farmer/:id', ensureAuth, async(req, res) => {
+
+    let farmer = await Farmer.findById(req.params.id).lean()
+
+    if (!farmer) {
+        res.render('errors/404')
+    } else {
+        farmer = await Farmer.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.redirect('/admin/farmers')
     }
 })
 
