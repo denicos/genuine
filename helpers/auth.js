@@ -1,3 +1,5 @@
+const paginateHelper = require('express-handlebars-paginate');
+
 module.exports = {
     ensureAuth: function(req, res, next) {
         if (req.isAuthenticated()) {
@@ -27,6 +29,7 @@ module.exports = {
                 ' selected="selected"$&'
             )
     },
+
 
 
 }

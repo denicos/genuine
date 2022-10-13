@@ -1,0 +1,32 @@
+<h1 class="text-center h3 py-2 fw-bolder">LESS QUANTITY</h1>
+ 
+<div class="table-responsive py-3">
+    <table class="table">
+        <thead class="table-secondary text-center">
+            <tr>
+                <th scope="col" class="h3">NAME</th>
+                <th scope="col" class="h3">QUANTITY</th>
+                <th scope="col" class="h3">CONTACT</th>
+                <th scope="col" class="h3">DATE</th>
+                <th scope="col" class="h3"> TYPE</th>
+                <th scope="col" class="h3">ACTION</th>
+            </tr>
+        </thead>
+
+        {{#each products}}
+        <tbody>
+            <tr class="text-center">
+                <td scope="row">{{name}}</td>
+                <td scope="row">{{quantity}}</td>
+                <td scope="row">{{contact}}</td>
+                <td scope="row">{{CreatedAt}}</td>
+                <td scope="row">{{quantity_type}}</td>
+                <td>
+                    <a class="btn btn-info text-white" href="/delete/{{_id}}">DELETE</a>
+                </td>
+            </tr>
+            
+        </tbody>
+        {{/each}}
+    </table>
+</div>

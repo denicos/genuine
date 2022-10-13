@@ -1,3 +1,4 @@
+{{#if inspectors}}
 <h1 class="text-center h3 py-2 fw-bolder">EXPORTERS</h1>
  
 <div class="table-responsive py-3">
@@ -14,7 +15,7 @@
             <tr class="text-center">
                 <td scope="row">{{name}}</td>
                 <td>
-                    <a class="btn btn-info text-white"  href="/payment">PAY TO VIEW CONTACT</a>
+                    <a class="btn btn-info text-white"  href="/payment/payment_inspector">PAY TO VIEW CONTACT</a>
                 </td>
             </tr>
             
@@ -22,6 +23,11 @@
         {{/each}}
     </table>
 </div>
+{{else}}
+<div class="container py-3">
+  <h3 class="h3 text-center">No information approved yet</h3>
+</div>
+{{/if}}
 
 <div class="float-md-right"> 
 <!-- Modal trigger button -->

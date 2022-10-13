@@ -33,4 +33,37 @@ router.get('/avocados', async(req, res) => {
 
 });
 
+
+
+
+//banana
+router.get('/banana', async(req, res) => {
+    try {
+        const farmers = await Farmer.find({ product: 'banana' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('products/banana', { layout: 'general', farmers })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+
+});
+
+
+router.get('/bananas', async(req, res) => {
+    try {
+        const farmers = await Farmer.find({ product: 'banana' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('products/banana_view', { layout: 'general', farmers })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+
+});
+
 module.exports = router;

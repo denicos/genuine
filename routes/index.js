@@ -14,16 +14,6 @@ router.get('/', function(req, res) {
     res.render('index');
 });
 
-router.get('/payment', async(req, res) => {
-    const payment_uri = "https://flutterwave.com/pay/clearing"
-    res.redirect(payment_uri);
-})
-
-router.get('/flight_payment', async(req, res) => {
-    const payment = "https://flutterwave.com/pay/flight-agent"
-    res.redirect(payment);
-})
-
 //Get clearing agent view
 router.get('/clearing', async(req, res) => {
     try {
@@ -103,7 +93,7 @@ router.get('/flights', async(req, res) => {
 router.post('/flight', async(req, res) => {
     try {
         await Agent.create(req.body)
-        res.redirect('/flight')
+        res.redirect('/flights')
     } catch (err) {
         console.error(err)
         res.render('errors/500 ')
@@ -130,7 +120,7 @@ router.get('/contact/:id', async(req, res, next) => {
 //quantity less by
 router.get('/less', async(req, res) => {
     try {
-        const products = await Product.find({ quantity_type: 'less' })
+        const products = await Product.find({ quantity_type: 'less', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -143,7 +133,7 @@ router.get('/less', async(req, res) => {
 
 router.get('/lezz', async(req, res) => {
     try {
-        const products = await Product.find({ quantity_type: 'less' })
+        const products = await Product.find({ quantity_type: 'less', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -182,7 +172,7 @@ router.get('/less/:id', async(req, res) => {
 //quantity excess by
 router.get('/excess', async(req, res) => {
     try {
-        const productz = await Product.find({ quantity_type: 'excess' })
+        const productz = await Product.find({ quantity_type: 'excess', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -197,7 +187,7 @@ router.get('/excess', async(req, res) => {
 //quantity excess by
 router.get('/excezz', async(req, res) => {
     try {
-        const productz = await Product.find({ quantity_type: 'excess' })
+        const productz = await Product.find({ quantity_type: 'excess', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -239,7 +229,7 @@ router.get('/excess/:id', async(req, res) => {
 //get inspector page
 router.get('/inspector', async(req, res) => {
     try {
-        const inspectors = await Inspector.find({ status: 'unapproved' })
+        const inspectors = await Inspector.find({ status: 'approved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -252,7 +242,7 @@ router.get('/inspector', async(req, res) => {
 
 router.get('/inspectors', async(req, res) => {
     try {
-        const inspectors = await Inspector.find({ status: 'unapproved' })
+        const inspectors = await Inspector.find({ status: 'approved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -294,7 +284,7 @@ router.get('/inspector/:id', async(req, res) => {
 //space with AWB
 router.get('/space', async(req, res) => {
     try {
-        const spaces = await Space.find({ status: 'unapproved' })
+        const spaces = await Space.find({ status: 'approved' })
             .populate("destination")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -308,7 +298,7 @@ router.get('/space', async(req, res) => {
 //dummy space
 router.get('/spaces', async(req, res) => {
     try {
-        const spaces = await Space.find({ status: 'unapproved' })
+        const spaces = await Space.find({ status: 'approved' })
             .populate("destination")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -348,7 +338,7 @@ router.get('/space/:id', async(req, res) => {
 //get exporter page..
 router.get('/exporter', async(req, res) => {
     try {
-        const exporters = await Exporter.find({ status: 'unapproved' })
+        const exporters = await Exporter.find({ status: 'approved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -362,7 +352,7 @@ router.get('/exporter', async(req, res) => {
 //dummy
 router.get('/exporters', async(req, res) => {
     try {
-        const exporters = await Exporter.find({ status: 'unapproved' })
+        const exporters = await Exporter.find({ status: 'approved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -377,7 +367,7 @@ router.get('/exporters', async(req, res) => {
 router.post('/exporter', async(req, res) => {
         try {
             await Exporter.create(req.body)
-            res.redirect('/exporter')
+            res.redirect('/exporters')
         } catch (err) {
             console.error(err)
             res.render('errors/500 ')

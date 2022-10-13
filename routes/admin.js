@@ -10,6 +10,8 @@ const Admin = require('../models/Admin');
 const { ensureAuth, ensureGuest, select } = require('../helpers/auth')
 const Inspector = require('../models/Inspector')
 const Space = require('../models/Space')
+const Exporter = require('../models/Exporter')
+const Product = require('../models/Product')
 
 
 //get admin index
@@ -124,6 +126,175 @@ router.get('/spaces', async(req, res) => {
         res.render('/errors/500')
     }
 });
+
+router.get('/approve_space/:id', ensureAuth, async(req, res) => {
+    try {
+        const space = await Space.findOne({
+            _id: req.params.id
+        }).lean()
+        if (!space) {
+            res.render('/errors/404')
+        } else {
+            console.log(req.params.id)
+            res.render('admin/approve_space', { layout: 'blank', space })
+            console.log(space.status)
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+})
+
+router.put('/approve_space/:id', ensureAuth, async(req, res) => {
+
+    let space = await Space.findById(req.params.id).lean()
+
+    if (!space) {
+        res.render('errors/404')
+    } else {
+        space = await Space.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.redirect('/admin/spaces')
+    }
+})
+
+
+// less quantity un and approved
+router.get('/less', async(req, res) => {
+    try {
+        const products = await Product.find({ status: 'unapproved' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/unapproved_less', { layout: 'blank', products })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+
+router.get('/lessens', async(req, res) => {
+    try {
+        const products = await Product.find({ status: 'approved' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/approved_less', { layout: 'blank', products })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+router.get('/approve_less/:id', ensureAuth, async(req, res) => {
+    try {
+        const product = await Product.findOne({
+            _id: req.params.id
+        }).lean()
+        if (!product) {
+            res.render('/errors/404')
+        } else {
+            console.log(req.params.id)
+            res.render('admin/approve_less', { layout: 'blank', product })
+            console.log(product.status)
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+})
+
+router.put('/approve_less/:id', ensureAuth, async(req, res) => {
+
+    let product = await Product.findById(req.params.id).lean()
+
+    if (!product) {
+        res.render('errors/404')
+    } else {
+        product = await Product.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.redirect('/admin/lessens')
+    }
+})
+
+
+// excess quantity un and approved
+router.get('/excess', async(req, res) => {
+    try {
+        const products = await Product.find({ status: 'unapproved' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/unapproved_less', { layout: 'blank', products })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+
+router.get('/exceed', async(req, res) => {
+    try {
+        const products = await Product.find({ status: 'approved' })
+            .populate("name")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/approved_less', { layout: 'blank', products })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+router.get('/approve_less/:id', ensureAuth, async(req, res) => {
+    try {
+        const product = await Product.findOne({
+            _id: req.params.id
+        }).lean()
+        if (!product) {
+            res.render('/errors/404')
+        } else {
+            console.log(req.params.id)
+            res.render('admin/approve_less', { layout: 'blank', product })
+            console.log(product.status)
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+})
+
+router.put('/approve_less/:id', ensureAuth, async(req, res) => {
+
+    let product = await Product.findById(req.params.id).lean()
+
+    if (!product) {
+        res.render('errors/404')
+    } else {
+        product = await Product.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.redirect('/admin/lessens')
+    }
+})
+
+
+
 //approve clearing agents
 router.get('/approve_cleared/:id', ensureAuth, async(req, res) => {
     try {
@@ -188,20 +359,123 @@ router.get('/approve_flight/:id', ensureAuth, async(req, res) => {
 //@route PUT 
 router.put('/approve_flight/:id', ensureAuth, async(req, res) => {
 
-    let agent = await Agent.findById(req.params.id).lean()
+        let agent = await Agent.findById(req.params.id).lean()
 
-    if (!agent) {
+        if (!agent) {
+            res.render('errors/404')
+        } else {
+            agent = await Agent.findOneAndUpdate({
+                _id: req.params.id
+            }, req.body, {
+                new: true,
+                runValidators: true
+            })
+            res.redirect('/admin/flights')
+        }
+    })
+    //approve inspectors
+router.get('/approve_inspector/:id', ensureAuth, async(req, res) => {
+    try {
+        const inspector = await Inspector.findOne({
+            _id: req.params.id
+        }).lean()
+        if (!inspector) {
+            res.render('/errors/404')
+        } else {
+            console.log(req.params.id)
+            res.render('admin/approve_inspector', { layout: 'blank', inspector })
+            console.log(inspector.status)
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+})
+
+router.put('/approve_inspector/:id', ensureAuth, async(req, res) => {
+
+    let inspector = await Inspector.findById(req.params.id).lean()
+
+    if (!inspector) {
         res.render('errors/404')
     } else {
-        agent = await Agent.findOneAndUpdate({
+        inspector = await Inspector.findOneAndUpdate({
             _id: req.params.id
         }, req.body, {
             new: true,
             runValidators: true
         })
-        res.redirect('/admin/flights')
+        res.redirect('/admin/inspectors')
     }
 })
+
+
+
+
+//exporter admin section
+router.get('/exporter', ensureAuth, async(req, res) => {
+    try {
+        const exporter = await Exporter.find({ status: 'unapproved' })
+            .populate("status")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/unapproved_exporter', { layout: 'blank', exporter })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+router.get('/exporters', ensureAuth, async(req, res) => {
+    try {
+        const exporters = await Exporter.find({ status: 'approved' })
+            .populate("status")
+            .sort({ createdAt: 'desc' })
+            .lean()
+        res.render('admin/approved_exporter', { layout: 'blank', exporters })
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+});
+
+router.get('/approve_exporter/:id', ensureAuth, async(req, res) => {
+    try {
+        const exporter = await Exporter.findOne({
+            _id: req.params.id
+        }).lean()
+        if (!exporter) {
+            res.render('/errors/404')
+        } else {
+            console.log(req.params.id)
+            res.render('admin/approve_exporter', { layout: 'blank', exporter })
+            console.log(exporter.status)
+        }
+
+    } catch (err) {
+        console.error(err)
+        res.render('/errors/500')
+    }
+})
+
+router.put('/approve_exporter/:id', ensureAuth, async(req, res) => {
+
+    let exporter = await Exporter.findById(req.params.id).lean()
+
+    if (!exporter) {
+        res.render('errors/404')
+    } else {
+        exporter = await Exporter.findOneAndUpdate({
+            _id: req.params.id
+        }, req.body, {
+            new: true,
+            runValidators: true
+        })
+        res.redirect('/admin/exporters')
+    }
+})
+
 
 //get login and register page
 router.get('/auth', function(req, res) {

@@ -12,7 +12,6 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const Flutterwave = require('flutterwave-node-v3');
-const paginateHelper = require('express-handlebars-paginate');
 const methodOverride = require('method-override');
 
 
@@ -50,7 +49,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs.engine({
     helpers: {
         select,
-        paginateHelper
+
     },
     defaultLayout: 'normal'
 }));
@@ -131,6 +130,7 @@ app.use(function(req, res, next) {
 app.use('/', routes);
 app.use('/admin', require('./routes/admin'));
 app.use('/product', require('./routes/product'));
+app.use('/payment', require('./routes/payment'))
 
 //Set Port
 app.set('port', (process.env.PORT || 3000));
