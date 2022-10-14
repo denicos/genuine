@@ -3,9 +3,9 @@
     <table class="table">
         <thead class="table-secondary text-center">
             <tr>
-                <th scope="col" class="h3 ">NAME</th>
-                <th scope="col" class="h3">COMPANY</th>
-                <th scope="col" class="h3">CONTACT</th>
+                <th scope="col" class="h4">NAME</th>
+                <th scope="col" class="h4">COMPANY</th>
+                <th scope="col" class="h4">CONTACT</th>
             </tr>
         </thead>
 
@@ -15,7 +15,7 @@
                 <td scope="row">{{name}}</td>
                 <td>{{company}}</td>
                 <td>
-                    <a class="btn btn-info text-white" href="/contact/{{_id}}">VIEW CONTACT</a>
+                    <a class="btn btn-warning btn-sm text-white" href="/contact/{{_id}}"><span style="font-size: 13px ;"> VIEW CONTACT</span></a>
                     
                 </td>
             </tr>
@@ -24,19 +24,15 @@
         {{/each}}
     </table>
 </div>
-
-
 <!-- Modal trigger button -->
 <div class="float-md-right"> 
-	 <button type="button" class="btn btn-primary btn-md py-2 align-right" data-bs-toggle="modal" data-bs-target="#modalId">
+	 <button type="button" class="btn btn-primary btn-sm py-2 align-right" data-bs-toggle="modal" data-bs-target="#modalId">
   ADD INFORMATION
 </button>
-<a href="/clearings" type="button" class="btn btn-primary btn-md py-2">
+<a href="/clearings" class="btn  btn-sm py-2 align-right text-white" style="background-color: black;">
   BACK
 </a>
 </div>
-
-
 <!-- Modal Body -->
 <!-- if you want to close by clicking outside the modal, delete the last endpoint:data-bs-backdrop and data-bs-keyboard -->
 <div class="modal fade" id="modalId" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog" aria-labelledby="modalTitleId" aria-hidden="true">
@@ -83,8 +79,6 @@
         </div>
     </div>
 </div>
-
-
 <!-- Optional: Place to the bottom of scripts -->
 <script>
     const myModal = new bootstrap.Modal(document.getElementById('modalId'), options)

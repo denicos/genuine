@@ -5,9 +5,9 @@
     <table class="table">
         <thead class="table-secondary text-center">
             <tr>
-                <th scope="col" class="h3 ">Name</th>
-                <th scope="col" class="h3 ">Company</th>
-                <th scope="col" class="h3 ">Contact</th>
+                <th scope="col" class="h4 ">Name</th>
+                <th scope="col" class="h4 ">Company</th>
+                <th scope="col" class="h4 ">Contact</th>
             </tr>
         </thead>
 
@@ -17,7 +17,7 @@
                 <td scope="row">{{name}}</td>
                 <td>{{company}}</td>
                 <td>
-                    <a  class="btn btn-info text-white" href="/payment/flight_payment">PAY TO VIEW CONTACT</a>
+                    <a class="btn btn-warning btn-sm text-white" href="/payment/flight_payment"><span style="font-size: 13px ;">PAY <em>1K</em> TO VIEW CONTACT</span></a>
                 </td>
             </tr>
             
@@ -32,10 +32,10 @@
 {{/if}}
 <div class="float-md-right"> 
 <!-- Modal trigger button -->
-<button type="button" class="btn btn-primary btn-md py-3" data-bs-toggle="modal" data-bs-target="#modalId">
+<button type="button"class="btn btn-primary btn-sm py-2 align-right" data-bs-toggle="modal" data-bs-target="#modalId">
   ADD INFORMATION
 </button>
-<a href="/" type="button" class="btn btn-primary btn-md py-2">
+<a href="/"  class="btn  btn-sm py-2 align-right text-white" style="background-color: black;">
   BACK
 </a>
 </div>
