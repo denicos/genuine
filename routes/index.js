@@ -393,11 +393,10 @@ router.get('/exporter/:id', async(req, res) => {
 
 
 
-
 //get farmers' page..
 router.get('/farmer', async(req, res) => {
     try {
-        const farmers = await Farmer.find({ status: 'unapproved' })
+        const farmers = await Farmer.find({ status: 'approved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -413,7 +412,7 @@ router.get('/farmer', async(req, res) => {
 router.get('/farmers', async(req, res) => {
     try {
         const prod = req.body.selected_product
-        const farmers = await Farmer.find({ status: 'unapproved' })
+        const farmers = await Farmer.find({ status: 'approved' })
             .populate("status")
             .sort({ createdAt: 'desc' })
             .lean()
