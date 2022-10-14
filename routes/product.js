@@ -6,7 +6,7 @@ const Category = require('../models/Category');
 //avocados 
 router.get('/avocado', async(req, res) => {
     try {
-        const farmers = await Farmer.find({ product: 'avocado' })
+        const farmers = await Farmer.find({ product: 'avocado', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -21,7 +21,7 @@ router.get('/avocado', async(req, res) => {
 
 router.get('/avocados', async(req, res) => {
     try {
-        const farmers = await Farmer.find({ product: 'avocado' })
+        const farmers = await Farmer.find({ product: 'avocado', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -39,7 +39,7 @@ router.get('/avocados', async(req, res) => {
 //banana
 router.get('/banana', async(req, res) => {
     try {
-        const farmers = await Farmer.find({ product: 'banana' })
+        const farmers = await Farmer.find({ product: 'banana', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
@@ -54,7 +54,7 @@ router.get('/banana', async(req, res) => {
 
 router.get('/bananas', async(req, res) => {
     try {
-        const farmers = await Farmer.find({ product: 'banana' })
+        const farmers = await Farmer.find({ product: 'banana', status: 'approved' })
             .populate("name")
             .sort({ createdAt: 'desc' })
             .lean()
