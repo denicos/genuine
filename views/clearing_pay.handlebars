@@ -29,7 +29,13 @@
 <div class="container py-3">
   <h4 class="h4 text-center">No information approved yet</h3>
 </div>
+<div>
 {{/if}}
+{{#if success}}
+{{success}}
+{{/if}}
+</div>
+
 <div class="float-md-right"> 
 	 <button type="button" class="btn btn-dark btn-sm py-2 align-right text-white" data-bs-toggle="modal" data-bs-target="#modalId">
   ADD YOUR COMPANY

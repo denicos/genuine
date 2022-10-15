@@ -49,6 +49,7 @@ router.get('/clearings', async(req, res) => {
 router.post('/clearing', async(req, res) => {
     try {
         await Agent.create(req.body)
+        req.flash("success", "INFORMATION ADDED SUCCESSFULLY , WAITING APPROVAL.");
         res.redirect('/clearings')
     } catch (err) {
         console.error(err)
