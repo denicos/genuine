@@ -25,7 +25,6 @@ const AgentSchema = mongoose.Schema({
     },
     CreatedAt: {
         type: Date,
-        //expires: '720m',
         default: Date.now
     }
 });
