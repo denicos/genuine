@@ -7,6 +7,7 @@ const Space = require('../models/Space');
 const Exporter = require('../models/Exporter');
 const Farmer = require('../models/Farmer');
 const Category = require('../models/Category');
+const paginate = require('handlebars-paginate')
 
 
 //Get Homepag
@@ -37,7 +38,14 @@ router.get('/clearings', async(req, res) => {
             .populate("agent_type")
             .sort({ createdAt: 'desc' })
             .lean()
-        res.render('clearing_pay', { layout: 'general', agents })
+        res.render('clearing_pay', {
+            layout: 'general',
+            agents,
+            pagination: {
+                page: 1, // The current page the user is on
+                pageCount: 10 // The total number of available pages
+            }
+        })
     } catch (err) {
         console.error(err)
         res.render('/errors/500')

@@ -37,18 +37,20 @@ db.on('error', function(err) {
 
 var routes = require('./routes/index');
 
+
 // Init App
 var app = express();
 
 //handlebars helpers
 const { select } = require('./helpers/auth')
-
+const { paginate } = require('handlebars-paginate')
 
 //View Engine
 app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs.engine({
     helpers: {
         select,
+        'paginate': paginate,
 
     },
     defaultLayout: 'normal'
@@ -57,7 +59,7 @@ app.set('view engine', 'handlebars');
 
 
 //register helper
-//handlebars.registerHelper('paginateHelper', paginateHelper.createPagination);
+//handlebars.registerHelper('paginate', paginate.createPagination);
 
 
 //BodyParser MiddleWare
